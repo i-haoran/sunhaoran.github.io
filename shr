@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>孙浩然 | 个人简介</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #666;
+            --accent: #0066cc;
+            --light: #f8f9fa;
+            --border: #eaecef;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background-color: #fff;
+            padding: 0;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        h1 {
+            margin: 0 0 10px;
+            font-weight: 600;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+        .tagline {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+        .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin: 0 5px 10px 0;
+        }
+        section {
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .project-card, .item {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+        }
+        .project-name {
+            margin: 0 0 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .project-name:hover {
+            text-decoration: underline;
+        }
+        .skills-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .skills-list li {
+            display: inline-block;
+            background: #e1f5fe;
+            color: #01579b;
+            padding: 6px 12px;
+            margin: 5px 10px 5px 0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>孙浩然</h1>
+            <div class="tagline">软件工程专业 | AI开发者</div>
+            <div>
+                <span class="badge">21岁 | 魔羯座</span>
+                <span class="badge">盐城工学院</span>
+                <span class="badge">CET-4</span>
+            </div>
+        </header>
+
+        <section>
+            <h2>🎓 教育背景</h2>
+            <div class="item">
+                <p><strong>盐城工学院</strong> — 软件工程专业</p>
+                <p>2023.09 - 2027.06 | GPA: 3.6/4.0</p>
+                <p>荣誉：连续四次三等奖学金、单项奖学金</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>🏆 荣誉与资质</h2>
+            <div class="item">
+                <ul style="list-style: disc inside; padding-left: 20px;">
+                    <li>蓝桥杯省级三等奖</li>
+                    <li>第六届算法设计与编程挑战赛A类优秀奖</li>
+                    <li>华为HCIA认证</li>
+                    <li>“互联网+”省级奖项</li>
+                    <li>申请专利四项 | 软件著作权两项</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>🚀 项目经历</h2>
+            <div class="project-card">
+                <a href="#" class="project-name">慧眼识害惠农助手</a>
+                <p><strong>项目描述：</strong>一款面向农业领域的微信小程序，旨在通过图像识别技术帮助农户快速识别作物病虫害，提供防治建议。</p>
+                <p><strong>成果：</strong>已成功发布并投入使用，有效提升了田间管理的效率。</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>🛠️ 技术技能</h2>
+            <ul class="skills-list">
+                <li>C/C++</li>
+                <li>JavaScript</li>
+                <li>Python (机器学习)</li>
+                <li>AI项目开发</li>
+                <li>开源数据挖掘</li>
+                <li>AI智能体开发</li>
+                <li>百度EasyDL模型训练</li>
+                <li>微信小程序开发</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>© 2026 孙浩然. 版权所有.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
