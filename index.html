@@ -5,55 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的主页</title>
     <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
             background-color: #f4f6f8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            text-align: center;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        h1 {
+            line-height: 1.6;
             color: #333;
-            margin-bottom: 30px;
+            min-height: 100vh;
+            padding: 20px 0;
         }
+
+        /* 容器：让内容居中并设置最大宽度 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 卡片式布局：每个项目一个卡片 */
+        .card {
+            background: white;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+        }
+
+        /* 鼠标悬停效果 */
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 标题样式 */
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        /* 段落样式 */
+        p {
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        /* 按钮容器：让按钮居中 */
+        .btn-container {
+            text-align: center;
+        }
+
+        /* 按钮样式 */
         .btn {
             display: inline-block;
-            padding: 15px 30px;
-            margin: 10px;
-            font-size: 18px;
+            padding: 12px 30px;
+            background-color: #3498db;
             color: white;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
             text-decoration: none;
-            transition: background-color 0.3s;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
         }
+
+        /* 按钮悬停效果 */
         .btn:hover {
-            background-color: #0056b3;
+            background-color: #2980b9;
         }
+
+        /* 特殊按钮样式（例如“项目”按钮） */
         .btn-project {
-            background-color: #28a745;
+            background-color: #27ae60;
         }
+
         .btn-project:hover {
-            background-color: #218838;
+            background-color: #219150;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #999;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>欢迎来到我的主页</h1>
-        <a href=https://github.com/haoransun693/haooransun.github.io/blob/main/shr class="btn">个人简介</a>
-        <a href="你的项目展示链接" class="btn btn-project">项目展示</a>
+        <!-- 第一个卡片：个人简介 -->
+        <div class="card">
+            <h2>关于我</h2>
+            <p>这里是你的个人简介。你可以在这里写一些关于自己的话，比如你的技能、兴趣、或者你想对访问者说的话。保持简洁明了，吸引人继续浏览你的项目。</p>
+            <div class="btn-container">
+                <a href="https://你的个人简介链接.com" target="_blank" class="btn">查看个人简介</a>
+            </div>
+        </div>
+
+        <!-- 第二个卡片：项目展示 -->
+        <div class="card">
+            <h2>我的项目</h2>
+            <p>这里介绍你的一个项目。可以写项目的名称、功能、技术栈，以及它解决了什么问题。让访问者对你的项目有一个初步的了解。</p>
+            <div class="btn-container">
+                <a href="https://你的项目链接.com" target="_blank" class="btn btn-project">查看项目</a>
+            </div>
+        </div>
+
+        <!-- 你可以在这里添加更多卡片 -->
+        <!-- <div class="card">
+            <h2>其他项目</h2>
+            <p>这是另一个项目的介绍。</p>
+            <div class="btn-container">
+                <a href="https://另一个项目链接.com" target="_blank" class="btn">查看项目</a>
+            </div>
+        </div> -->
+
+        <footer>
+            <p>© 2026 孙浩然. 保留所有权利。</p>
+        </footer>
     </div>
+
 </body>
 </html>
-
