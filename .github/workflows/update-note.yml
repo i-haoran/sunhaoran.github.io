@@ -2,8 +2,8 @@ name: Auto Update Note
 
 on:
   schedule:
-    - cron: '0 * * * *'  # 每小时自动更新一次
-  workflow_dispatch:     # 允许手动点击运行
+    - cron: '0 * * * *'  # 每小时更新
+  workflow_dispatch:
 
 jobs:
   fetch-issue:
@@ -14,15 +14,21 @@ jobs:
 
       - name: Fetch Issue Data
         run: |
-          # 这里的数字 1 代表 Issue #1，你可以改成别的
-          curl -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/${{ github.repository }}/issues/1 \
+          # 关键修改：加上 -L 进行重定向，并且用 -sS 让它静默运行避免干扰
+          # 这里的 1 代表 Issue #1，请确认你的 Issue 编号正确
+          curl -sS -L -H "Accept: application/vnd.github.v3+json" \
+          "https://api.github.com/repos/${{ github.repository }}/issues/1" \
           -o note.json
-          
-      - name: Commit and Push
+
+      - name: Check JSON Validity
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # 检查文件是否为空，如果为空，写入一个默认的空对象，防止报错
+          if [ ! -s note.json ]; then
+            echo "{}" > note.json
+          fi
+
+      - name: Commit
+        run: |
           git add note.json
-          git commit -m "Auto update note content" || echo "No changes to commit"
+          git commit -m "Update note.json" || echo "No changes to commit"
           git push
