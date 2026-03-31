@@ -20,7 +20,7 @@
 关键点：利用数组有序的特性，只需比较当前元素与前一个元素是否相同
 
 代码演示
-'''cpp
+```cpp
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
