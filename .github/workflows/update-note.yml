@@ -1,0 +1,28 @@
+name: Auto Update Note
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # 每小时自动更新一次
+  workflow_dispatch:     # 允许手动点击运行
+
+jobs:
+  fetch-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Fetch Issue Data
+        run: |
+          # 这里的数字 1 代表 Issue #1，你可以改成别的
+          curl -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/${{ github.repository }}/issues/1 \
+          -o note.json
+          
+      - name: Commit and Push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add note.json
+          git commit -m "Auto update note content" || echo "No changes to commit"
+          git push
