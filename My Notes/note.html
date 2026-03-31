@@ -4,128 +4,174 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的笔记库</title>
-    <!-- 引入 marked.js 用于解析 Markdown -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        /* --- 基础样式 --- */
+        /* --- 你的原始样式保持不变 --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
             background-color: #f4f6f8;
             line-height: 1.6;
             color: #333;
+            min-height: 100vh;
             padding: 20px 0;
         }
         .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        .card {
+            background: white;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+        }
+        .card:hover { transform: translateY(-2px); }
+        h2 { color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 5px; display: inline-block; }
+        p { color: #555; margin-bottom: 20px; font-size: 16px; }
+        .btn-container { text-align: center; }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover { background-color: #2980b9; }
+        footer { text-align: center; margin-top: 40px; color: #999; font-size: 14px; }
+
+        /* --- 新增的功能样式 --- */
         
-        /* --- 头部 --- */
-        .header-area { text-align: center; margin-bottom: 40px; }
+        /* 1. 头部搜索区域 */
+        .header-area {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .search-box {
+            margin-top: 20px;
+            position: relative;
+        }
         .search-input {
-            width: 100%; padding: 15px 20px; border-radius: 8px;
-            border: 1px solid #ddd; font-size: 16px; outline: none;
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            outline: none;
             transition: border-color 0.3s;
         }
-        .search-input:focus { border-color: #3498db; box-shadow: 0 0 8px rgba(52, 152, 219, 0.2); }
-
-        /* --- 卡片样式 --- */
-        .card {
-            background: white; margin-bottom: 30px; padding: 30px;
-            border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        .search-input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
         }
-        
-        /* --- 加载中/错误样式 --- */
-        .loading, .error { text-align: center; padding: 40px; color: #666; font-size: 16px; }
-        .error { color: #cf222e; }
+
+        /* 2. 标签样式 */
+        .tags {
+            margin-bottom: 10px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #eef2f7;
+            color: #576574;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 8px;
+            font-weight: 500;
+        }
+
+        /* 3. 元数据样式 (时间、阅读量) */
+        .meta-info {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+        }
+        .meta-item::before {
+            margin-right: 5px;
+            display: inline-block;
+            transform: translateY(1px);
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
+        
+        <!-- 新增：头部和搜索功能 -->
         <div class="header-area">
             <h1>我的知识库</h1>
-            <input type="text" id="searchInput" class="search-input" placeholder="搜索笔记标题...">
+            <div class="search-box">
+                <input type="text" id="searchInput" class="search-input" placeholder="搜索笔记标题或内容...">
+            </div>
         </div>
 
-        <!-- 笔记列表容器 -->
-        <div id="notes-container">
-            <div class="loading">🚀 正在自动加载 GitHub Issues 中的笔记，请稍候...</div>
+        <!-- 笔记卡片 1 -->
+        <div class="card" data-tags="c++ 算法 双指针">
+            <!-- 新增：标签 -->
+            <div class="tags">
+                <span class="tag">C++</span>
+                <span class="tag">算法</span>
+            </div>
+            <h2>C++双指针技巧</h2>
+            
+
+
+            <p>双指针对数组字符串的简单处理实例，包含快慢指针的核心逻辑与实战演练。</p>
+            <div class="btn-container">
+                <a href="https://github.com/i-haoran/sunhaoran.github.io/issues/1#issue-4175319624" target="_blank" class="btn">阅读笔记</a>
+            </div>
         </div>
+
+        <!-- 笔记卡片 2 (示例) -->
+        <div class="card" data-tags="python 爬虫 自动化">
+            <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">工具</span>
+            </div>
+            <h2>Python 自动化脚本</h2>
+
+            <p>整理了一些常用的 Python 自动化脚本，用于文件批量处理和网页数据抓取。</p>
+            <div class="btn-container">
+                <a href="#" class="btn">阅读笔记</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 孙浩然. 保留所有权利。</p>
+        </footer>
     </div>
 
+    <!-- 新增：搜索功能的 JavaScript 脚本 -->
     <script>
-        document.addEventListener("DOMContentLoaded", async function () {
-            const container = document.getElementById('notes-container');
-            const searchInput = document.getElementById('searchInput');
+        // 获取输入框和所有卡片
+        const searchInput = document.getElementById('searchInput');
+        const cards = document.querySelectorAll('.card');
 
-            try {
-                // 1. 使用反向代理解决跨域
-                // 这里使用 allorigins.win，它会帮我们去请求 GitHub API，然后把结果发给我们
-                // 替换下面的 "sunhaoran" 为你自己的用户名
-                const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(
-                    `https://api.github.com/repos/sunhaoran/sunhaoran.github.io/issues?state=open`
-                )}`;
+        // 监听输入事件
+        searchInput.addEventListener('input', function(e) {
+            const searchText = e.target.value.toLowerCase(); // 获取输入并转为小写
 
-                const response = await fetch(proxyUrl);
-                if (!response.ok) throw new Error('网络错误');
+            cards.forEach(card => {
+                // 获取卡片的标题和描述文本
+                const title = card.querySelector('h2').textContent.toLowerCase();
+                const desc = card.querySelector('p').textContent.toLowerCase();
+                const tags = card.getAttribute('data-tags').toLowerCase();
 
-                const issues = await response.json();
-
-                // 2. 如果没有 Issue
-                if (issues.length === 0) {
-                    container.innerHTML = '<p>📭 暂无笔记，请去 GitHub 新建一个 Issue 吧！</p>';
-                    return;
+                // 判断是否包含搜索词
+                if (title.includes(searchText) || desc.includes(searchText) || tags.includes(searchText)) {
+                    card.style.display = 'block'; // 显示
+                } else {
+                    card.style.display = 'none'; // 隐藏
                 }
-
-                // 3. 生成所有笔记卡片
-                let notesHTML = '';
-                issues.forEach(issue => {
-                    // 提取 Issue 的标题和内容
-                    const title = issue.title;
-                    const body = issue.body;
-                    // 生成唯一的 ID (用 Issue 编号)
-                    const id = issue.number;
-
-                    // 使用 marked 解析 Markdown
-                    const contentHtml = marked.parse(body);
-
-                    // 拼接卡片 HTML
-                    notesHTML += `
-                    <div class="card" data-id="${id}" data-title="${title.toLowerCase()}">
-                        <h2>${title}</h2>
-                        <div class="note-content">
-                            ${contentHtml}
-                        </div>
-                        <hr style="margin:20px 0; border:0; border-top:1px solid #eee;">
-                        <div class="meta">Issue #${id} · 自动同步</div>
-                    </div>
-                    `;
-                });
-
-                container.innerHTML = notesHTML;
-
-                // 4. 搜索功能 (基于标题)
-                searchInput.addEventListener('input', function(e) {
-                    const query = e.target.value.toLowerCase();
-                    document.querySelectorAll('.card').forEach(card => {
-                        const title = card.getAttribute('data-title');
-                        if (title.includes(query)) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-
-            } catch (error) {
-                console.error("加载失败:", error);
-                container.innerHTML = `
-                <div class="error">
-                    <h3>❌ 加载失败</h3>
-                    <p>可能是网络问题，或者你还没有创建 Issue。</p>
-                    <p><small>错误信息: ${error.message}</small></p>
-                </div>`;
-            }
+            });
         });
     </script>
+
 </body>
 </html>
