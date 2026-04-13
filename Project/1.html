@@ -36,7 +36,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        .logo { font-size: 1.5rem; font-weight: bold; color: #2c7a51; } /* 农业绿 */
+        .logo { font-size: 1.5rem; font-weight: bold; color: #2c7a51; }
         .nav-links a { margin-left: 20px; font-size: 0.9rem; color: #555; }
         .nav-links a:hover { color: #2c7a51; }
 
@@ -50,7 +50,6 @@
         .hero h1 { font-size: 2.5rem; margin-bottom: 20px; color: #222; }
         .hero p { font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto 40px; }
         
-        /* 小程序码占位符样式 */
         .qr-code {
             width: 200px;
             height: 200px;
@@ -88,7 +87,7 @@
             gap: 50px;
             margin-bottom: 60px;
         }
-        .feature-row:nth-child(even) { flex-direction: row-reverse; } /* 偶数项图片在左 */
+        .feature-row:nth-child(even) { flex-direction: row-reverse; }
         
         .feature-text { flex: 1; }
         .feature-text h3 { font-size: 1.5rem; margin-bottom: 15px; }
@@ -101,6 +100,46 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         .feature-img img { width: 100%; height: auto; display: block; }
+
+        /* --- 代码展示区域 --- */
+        .code-section {
+            background: #282c34;
+            padding: 80px 0;
+            border-top: 1px solid #333;
+        }
+        .code-section h2 { color: #fff; }
+        .code-section h2::after { background: #61dafb; }
+        
+        .code-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #1e2127;
+            padding: 30px;
+            border-radius: 6px;
+            overflow: auto;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border: 1px solid #3a3f4b;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .code-header {
+            display: flex;
+            margin-bottom: 15px;
+            font-size: 0.8rem;
+            color: #616161;
+            font-family: sans-serif;
+        }
+        .dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
+        .red { background: #ff5c57; }
+        .yellow { background: #ffbd5f; }
+        .green { background: #5af78e; }
+        
+        /* 简单的代码高亮颜色 */
+        .code-keyword { color: #c678dd; }
+        .code-string { color: #98c379; }
+        .code-func { color: #61dafb; }
+        .code-comment { color: #7f848e; }
 
         /* --- 技术栈 --- */
         .tech-stack { text-align: center; }
@@ -127,19 +166,16 @@
             font-size: 0.9rem;
         }
 
-    /* 手机端适配 */
-    @media (max-width: 768px) {
-        .hero h1 {
-            font-size: 2rem;
+        /* --- 移动端适配 --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .feature-row, .feature-row:nth-child(even) {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .feature-img { width: 100%; }
+            .code-container { padding: 20px; font-size: 0.8rem; }
         }
-        .feature-row {
-            flex-direction: column;
-            gap: 20px;
-        }
-        .feature-img {
-            width: 100%;
-        }
-    }
     </style>
 </head>
 <body>
@@ -147,10 +183,11 @@
     <!-- 1. 导航栏 -->
     <header>
         <div class="container">
-            <div class="logo">🌾 智慧农业助手</div>
+            <div class="logo">🌾 蜻蜓农服智慧农业</div>
             <nav class="nav-links">
                 <a href="#intro">项目介绍</a>
                 <a href="#features">核心功能</a>
+                <a href="#code">代码实现</a>
                 <a href="#tech">技术栈</a>
                 <a href="https://github.com/i-haoran/sunhaoran.github.io" target="_blank">GitHub</a>
             </nav>
@@ -164,7 +201,6 @@
             <p>利用大模型技术，为农户提供专业、实时的农业种植与养殖建议，让知识触手可及。</p>
             
             <!-- 图片占位符：请替换 src 为你的小程序码图片链接 -->
-            <!-- 如果没有图片，这里会显示一个灰色的框 -->
             <img src="image/xiaochengxuma.jpg" alt="小程序二维码" class="qr-code" style="object-fit: contain;">
             <p style="font-size: 0.9rem; margin-top: 10px;">微信扫码体验</p>
         </div>
@@ -177,7 +213,7 @@
             <p style="text-align: center; max-width: 700px; margin: 0 auto; color: #555;">
                 在传统的农业生产中，农户往往面临病虫害识别难、种植技术咨询渠道少的问题。
                 本项目通过整合 <strong>Coze (扣子)</strong> 强大的工作流编排能力与专属农业知识库，
-                构建了一个轻量级的小程序问答助手，旨在降低农业技术获取的门槛。
+                构建了一个轻量级的小程序问答助手，旨在降低农业技术获取的门槛
             </p>
         </div>
     </section>
@@ -229,7 +265,109 @@
         </div>
     </section>
 
-    <!-- 5. 技术栈 -->
+    <!-- 5. 代码展示 (更新为你的核心代码) -->
+    <section id="code" class="code-section">
+        <div class="container">
+            <h2>核心代码实现</h2>
+            
+            <!-- 代码块 1: 数据与初始化 -->
+            <div class="code-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span style="margin-left: 10px;">pages/index/index.js - 状态管理</span>
+            </div>
+            <div class="code-container">
+                <pre><code><span class="code-comment">// 1. 状态管理 (Data)</span>
+<span class="code-func">data</span>: {
+  messages: [],    <span class="code-comment">// 对话历史列表</span>
+  inputValue: <span class="code-string">''</span>,     <span class="code-comment">// 输入框内容</span>
+  canSend: <span class="code-keyword">false</span>,    <span class="code-comment">// 控制发送按钮状态</span>
+  loading: <span class="code-keyword">false</span>     <span class="code-comment">// 防止重复提交的加载状态</span>
+},
+
+<span class="code-comment">// 2. 页面加载</span>
+<span class="code-func">onLoad</span>() {
+  <span class="code-comment">// 初始化欢迎语</span>
+  <span class="code-keyword">this</span>.<span class="code-func">addMessage</span>(<span class="code-string">'你好！我是农业问答助手...'</span>, <span class="code-keyword">false</span>);
+}</code></pre>
+            </div>
+
+            <!-- 代码块 2: 网络请求 -->
+            <div class="code-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span style="margin-left: 10px;">pages/index/index.js - API 请求</span>
+            </div>
+            <div class="code-container">
+                <pre><code><span class="code-comment">// 3. API 请求核心 (fetchAnswer)</span>
+<span class="code-func">fetchAnswer</span>(query) {
+  <span class="code-keyword">const</span> that = <span class="code-keyword">this</span>;
+  wx.<span class="code-func">request</span>({
+    url: <span class="code-string">'https://api.coze.cn/open_api/v2/chat'</span>,
+    method: <span class="code-string">'POST'</span>,
+    header: {
+      <span class="code-string">'Authorization'</span>: <span class="code-string">'Bearer pat_s1mLGPc1aMDcbaOfu4fdY4nrm7N5V8xdwwMthlJoVDr49yyy3wTVTJ9WaLl9y6Cm'</span>,
+      <span class="code-string">'Content-Type'</span>: <span class="code-string">'application/json'</span>
+    },
+    data: {
+      bot_id: <span class="code-string">'7536723393757085735'</span>, <span class="code-comment">// 关键: 对应 Coze Bot ID</span>
+      user: <span class="code-string">'user_'</span> + Date.now(),
+      query: query,
+      stream: <span class="code-keyword">false</span>
+    },
+    success: <span class="code-func">function</span>(res) {
+      <span class="code-comment">// 成功回调，处理响应</span>
+      that.<span class="code-func">handleResponse</span>(res.data);
+    },
+    fail: <span class="code-func">function</span>(err) {
+      <span class="code-comment">// 失败回调，兜底逻辑</span>
+      that.<span class="code-func">addMessage</span>(<span class="code-string">'网络请求失败，请稍后重试'</span>, <span class="code-keyword">false</span>);
+    }
+  });
+}</code></pre>
+            </div>
+
+            <!-- 代码块 3: 智能解析 -->
+            <div class="code-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span style="margin-left: 10px;">pages/index/index.js - 智能解析</span>
+            </div>
+            <div class="code-container">
+                <pre><code><span class="code-comment">// 4. 容错解析逻辑 (simpleExtract)</span>
+<span class="code-func">simpleExtract</span>(responseData) {
+  <span class="code-keyword">try</span> {
+    <span class="code-comment">// 方法 1: 递归查找长文本字符串</span>
+    <span class="code-comment">// 针对 API 返回结构不标准时的“暴力”提取</span>
+    <span class="code-keyword">const</span> findFirstString = (obj) => {
+      <span class="code-keyword">if</span> (typeof obj === <span class="code-string">'string'</span> &amp;&amp; obj.length > 50) {
+        <span class="code-keyword">return</span> obj;
+      }
+      <span class="code-comment">// ...递归逻辑</span>
+    };
+    
+    <span class="code-comment">// 方法 2: 标准结构提取</span>
+    <span class="code-keyword">if</span> (responseData.data?.messages?.[0]) {
+      <span class="code-keyword">return</span> responseData.data.messages[0].content;
+    }
+    
+    <span class="code-keyword">return</span> <span class="code-keyword">null</span>;
+  } <span class="code-keyword">catch</span> (error) {
+    <span class="code-keyword">return</span> <span class="code-keyword">null</span>;
+  }
+}</code></pre>
+            </div>
+
+            <p style="text-align: center; color: #888; margin-top: 20px; font-size: 0.9rem;">
+                代码展示了状态管理、Coze API 调用鉴权及针对非标准响应的智能解析策略
+            </p>
+        </div>
+    </section>
+
+    <!-- 6. 技术栈 -->
     <section id="tech">
         <div class="container">
             <h2>技术栈</h2>
@@ -242,12 +380,12 @@
         </div>
     </section>
 
-    <!-- 6. 页脚 -->
+    <!-- 7. 页脚 -->
     <footer>
         <div class="container">
-            <p>© 2026 智慧农业助手项目. All Rights Reserved.</p>
+            <p>© 2026 孙浩然.保留所有权利.</p>
             <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">
-                由 GitHub Pages 托管
+                由 孙浩然 设计并开发
             </p>
         </div>
     </footer>
