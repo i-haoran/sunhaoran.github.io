@@ -127,15 +127,19 @@
             font-size: 0.9rem;
         }
 
-        /* --- 移动端适配 --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .feature-row, .feature-row:nth-child(even) {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .feature-img { width: 100%; }
+    /* 手机端适配 */
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2rem;
         }
+        .feature-row {
+            flex-direction: column;
+            gap: 20px;
+        }
+        .feature-img {
+            width: 100%;
+        }
+    }
     </style>
 </head>
 <body>
