@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 农业问答助手 - 项目展示</title>
+    <style>
+        /* --- 基础样式重置 --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9fbfd;
+        }
+        a { text-decoration: none; color: inherit; }
+        
+        /* --- 布局容器 --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- 头部导航 --- */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #2c7a51; } /* 农业绿 */
+        .nav-links a { margin-left: 20px; font-size: 0.9rem; color: #555; }
+        .nav-links a:hover { color: #2c7a51; }
+
+        /* --- 英雄区域 (首屏) --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+        }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 20px; color: #222; }
+        .hero p { font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto 40px; }
+        
+        /* 小程序码占位符样式 */
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            background-color: #f0f0f0;
+            border: 2px dashed #ccc;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            border-radius: 10px;
+        }
+
+        /* --- 通用板块样式 --- */
+        section { padding: 60px 0; }
+        h2 { 
+            font-size: 2rem; 
+            margin-bottom: 40px; 
+            text-align: center; 
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #2c7a51;
+            margin: 15px auto 0;
+        }
+
+        /* --- 功能介绍 (图文混排) --- */
+        .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        .feature-row:nth-child(even) { flex-direction: row-reverse; } /* 偶数项图片在左 */
+        
+        .feature-text { flex: 1; }
+        .feature-text h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .feature-text p { color: #555; margin-bottom: 15px; }
+        
+        .feature-img {
+            flex: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .feature-img img { width: 100%; height: auto; display: block; }
+
+        /* --- 技术栈 --- */
+        .tech-stack { text-align: center; }
+        .tech-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .tech-item {
+            background: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            font-weight: 500;
+        }
+
+        /* --- 页脚 --- */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            background: #333;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        /* --- 移动端适配 --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .feature-row, .feature-row:nth-child(even) {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .feature-img { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. 导航栏 -->
+    <header>
+        <div class="container">
+            <div class="logo">🌾 智慧农业助手</div>
+            <nav class="nav-links">
+                <a href="#intro">项目介绍</a>
+                <a href="#features">核心功能</a>
+                <a href="#tech">技术栈</a>
+                <a href="你的GitHub项目地址" target="_blank">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 2. 首屏海报区 -->
+    <section class="hero">
+        <div class="container">
+            <h1>基于 Coze 与小程序的<br>农业智能问答系统</h1>
+            <p>利用大模型技术，为农户提供专业、实时的农业种植与养殖建议，让知识触手可及。</p>
+            
+            <!-- 图片占位符：请替换 src 为你的小程序码图片链接 -->
+            <!-- 如果没有图片，这里会显示一个灰色的框 -->
+            <img src="你的小程序码图片链接.png" alt="小程序二维码" class="qr-code" style="object-fit: contain;">
+            <p style="font-size: 0.9rem; margin-top: 10px;">微信扫码体验</p>
+        </div>
+    </section>
+
+    <!-- 3. 项目背景/介绍 -->
+    <section id="intro">
+        <div class="container">
+            <h2>项目背景</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto; color: #555;">
+                在传统的农业生产中，农户往往面临病虫害识别难、种植技术咨询渠道少的问题。
+                本项目通过整合 <strong>Coze (扣子)</strong> 强大的工作流编排能力与专属农业知识库，
+                构建了一个轻量级的小程序问答助手，旨在降低农业技术获取的门槛。
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. 核心功能展示 (图文交替) -->
+    <section id="features" style="background-color: #fff;">
+        <div class="container">
+            <h2>核心功能</h2>
+
+            <!-- 功能 1 -->
+            <div class="feature-row">
+                <div class="feature-text">
+                    <h3>📚 专属农业知识库</h3>
+                    <p>我们在 Coze 中整理了大量专业的农业文档、种植手册和病虫害图谱。</p>
+                    <p>AI 不再是泛泛而谈，而是基于我们上传的本地知识库进行精准回答，确保建议的科学性和实用性。</p>
+                </div>
+                <div class="feature-img">
+                    <!-- 图片占位符：请替换为知识库截图 -->
+                    <img src="你的知识库截图链接.jpg" alt="知识库展示">
+                </div>
+            </div>
+
+            <!-- 功能 2 -->
+            <div class="feature-row">
+                <div class="feature-text">
+                    <h3>💬 智能问答体验</h3>
+                    <p>用户只需在小程序中输入遇到的问题（如“水稻叶子发黄怎么办？”），AI 即可即时响应。</p>
+                    <p>支持多轮对话，能够像真人专家一样追问细节，提供针对性的解决方案。</p>
+                </div>
+                <div class="feature-img">
+                    <!-- 图片占位符：请替换为小程序聊天界面截图 -->
+                    <img src="你的小程序聊天界面截图.jpg" alt="问答界面">
+                </div>
+            </div>
+
+            <!-- 功能 3 -->
+            <div class="feature-row">
+                <div class="feature-text">
+                    <h3>🚀 快速部署与集成</h3>
+                    <p>利用 Coze API 快速对接微信小程序后端。</p>
+                    <p>实现了从用户提问、云端处理到结果返回的毫秒级响应，无需复杂的服务器维护。</p>
+                </div>
+                <div class="feature-img">
+                    <!-- 图片占位符：请替换为Coze工作流截图或架构图 -->
+                    <img src="你的Coze工作流截图.png" alt="技术架构">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 5. 技术栈 -->
+    <section id="tech">
+        <div class="container">
+            <h2>技术栈</h2>
+            <div class="tech-grid">
+                <div class="tech-item">Coze (扣子)</div>
+                <div class="tech-item">微信小程序</div>
+                <div class="tech-item">RAG (检索增强生成)</div>
+                <div class="tech-item">GitHub Pages</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 页脚 -->
+    <footer>
+        <div class="container">
+            <p>© 2026 智慧农业助手项目. All Rights Reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">
+                由 GitHub Pages 托管
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
