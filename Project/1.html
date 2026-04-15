@@ -1,674 +1,448 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>智慧农业双模态系统 - 项目展示</title>
-<style>
-  /* --- 基础样式与字体 --- */
-  :root {
-    --primary-color: #2c7a51; /* 主色调：深绿 */
-    --secondary-color: #4caf50; /* 辅助色：亮绿 */
-    --bg-color: #f8f9fa;
-    --card-bg: #ffffff;
-    --text-dark: #212529;
-    --text-light: #6c757d;
-    --border-radius: 12px;
-    --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    --transition: all 0.3s ease;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 农业问答助手 - 项目展示</title>
+    <style>
+        /* --- 基础样式重置 --- */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.7;
-    color: var(--text-dark);
-    background-color: var(--bg-color);
-    padding-bottom: 40px;
-  }
+    line-height: 1.6;
+    color: #333;
+    background-color: #c8e6c9; 
+    transition: background-color 0.3s ease;
+}
+        a { text-decoration: none; color: inherit; }
+        
+        /* --- 布局容器 --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-  /* --- 布局容器 --- */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
+        /* --- 头部导航 --- */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            color: #2c7a51; 
+        }
+        .nav-links a { 
+            margin-left: 20px; 
+            font-size: 0.9rem; 
+            color: #555; 
+        }
+        .nav-links a:hover { 
+            color: #2c7a51; 
+        }
 
-  /* --- 头部导航 --- */
-  header {
-    background: var(--card-bg);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid #eee;
-  }
+        /* --- 英雄区域 (首屏) --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: #fff;
+            border-radius: 12px;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #eee;
+        }
+        .hero h1 { 
+            font-size: 2.5rem; 
+            margin-bottom: 20px; 
+            color: #222; 
+        }
+        .hero p { 
+            font-size: 1.2rem; 
+            color: #666; 
+            max-width: 600px; 
+            margin: 0 auto 40px; 
+        }
+        
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            background-color: #f0f0f0;
+            border: 2px dashed #ccc;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            border-radius: 10px;
+        }
 
-  header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+        /* --- 通用板块样式 --- */
+        section { 
+            padding: 60px 0; 
+        }
+        h2 { 
+            font-size: 2rem; 
+            margin-bottom: 40px; 
+            text-align: center; 
+            position: relative;
+            color: #2c7a51;
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #2c7a51;
+            margin: 15px auto 0;
+        }
 
-  .logo {
-    font-size: 1.6rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+        /* --- 功能介绍 (图文混排) --- */
+        .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        .feature-row:nth-child(even) { 
+            flex-direction: row-reverse; 
+        }
+        
+        .feature-text { 
+            flex: 1; 
+        }
+        .feature-text h3 { 
+            font-size: 1.5rem; 
+            margin-bottom: 15px; 
+            color: #2c7a51;
+        }
+        .feature-text p { 
+            color: #555; 
+            margin-bottom: 15px; 
+        }
+        
+        .feature-img {
+            flex: 1;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .feature-img:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-img img { 
+            width: 100%; 
+            height: 100%;
+            object-fit: cover;
+            display: block; 
+        }
 
-  .logo i {
-    font-size: 1.8rem;
-  }
+        /* --- 代码展示区域 --- */
+        .code-section {
+            background: #282c34;
+            padding: 80px 0;
+            border-top: 1px solid #333;
+        }
+        .code-section h2 { 
+            color: #fff; 
+        }
+        .code-section h2::after { 
+            background: #61dafb; 
+        }
+        
+        .code-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #1e2127;
+            padding: 30px;
+            border-radius: 6px;
+            overflow: auto;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border: 1px solid #3a3f4b;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .code-header {
+            display: flex;
+            margin-bottom: 15px;
+            font-size: 0.8rem;
+            color: #616161;
+            font-family: sans-serif;
+        }
+        .dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
+        .red { background: #ff5c57; }
+        .yellow { background: #ffbd5f; }
+        .green { background: #5af78e; }
+        
+        .code-keyword { color: #c678dd; }
+        .code-string { color: #98c379; }
+        .code-func { color: #61dafb; }
+        .code-comment { color: #7f848e; }
 
-  .nav-links a {
-    margin-left: 30px;
-    font-size: 1rem;
-    color: var(--text-dark);
-    font-weight: 500;
-    position: relative;
-    padding-bottom: 5px;
-  }
+        /* --- 技术栈 --- */
+        .tech-stack { text-align: center; }
+        .tech-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .tech-item {
+            background: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            font-weight: 500;
+        }
 
-  .nav-links a:hover {
-    color: var(--primary-color);
-  }
+        /* --- 页脚 --- */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            background: #333;
+            color: #fff;
+            font-size: 0.9rem;
+        }
 
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-color);
-    transition: var(--transition);
-  }
-
-  .nav-links a:hover::after {
-    width: 100%;
-  }
-
-  /* --- 英雄区域 (首屏) --- */
-  .hero {
-    text-align: center;
-    padding: 100px 20px 60px;
-    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-    border-radius: 0 0 20px 20px;
-    margin-bottom: 40px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -50px;
-    right: -50px;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: rgba(76, 175, 80, 0.1);
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -80px;
-    left: -50px;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    background: rgba(44, 122, 81, 0.1);
-  }
-
-  .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: var(--text-dark);
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero p {
-    font-size: 1.3rem;
-    color: var(--text-light);
-    max-width: 700px;
-    margin: 0 auto 40px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .qr-container {
-    display: inline-block;
-    background: #fff;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-
-  .qr-code {
-    width: 180px;
-    height: 180px;
-    background-color: #f0f0f0;
-    border: 2px dashed #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #999;
-    border-radius: 8px;
-  }
-
-  /* --- 通用板块样式 --- */
-  section {
-    padding: 80px 0;
-  }
-
-  h2 {
-    font-size: 2.3rem;
-    margin-bottom: 60px;
-    text-align: center;
-    position: relative;
-    color: var(--primary-color);
-    font-weight: 700;
-  }
-
-  h2 span {
-    position: relative;
-    z-index: 1;
-  }
-
-  h2::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 6px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    margin: 20px auto 0;
-    border-radius: 3px;
-    position: relative;
-    z-index: 0;
-  }
-
-  /* --- 功能介绍 (卡片式) --- */
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-bottom: 60px;
-  }
-
-  .feature-card {
-    background: var(--card-bg);
-    padding: 40px 30px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    text-align: center;
-    transition: var(--transition);
-    border: 1px solid #eee;
-  }
-
-  .feature-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-  }
-
-  .feature-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: var(--secondary-color);
-  }
-
-  .feature-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: var(--primary-color);
-  }
-
-  .feature-card p {
-    color: var(--text-light);
-    font-size: 1rem;
-  }
-
-  /* --- 代码展示区域 --- */
-  .code-section {
-    background: linear-gradient(135deg, #1a1a2e 0%, #162134 100%);
-    padding: 100px 0;
-    border-top: 1px solid #333;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .code-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230f0f1a"/><path d="M0 0h100v100H0z" fill="none" stroke="%231a1a3a" stroke-width="2"/></svg>');
-    opacity: 0.1;
-    pointer-events: none;
-  }
-
-  .code-section h2 {
-    color: #fff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    position: relative;
-    z-index: 1;
-  }
-
-  .code-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .code-container {
-    background: #1e2127;
-    padding: 30px;
-    border-radius: 8px;
-    overflow: auto;
-    font-family: 'Courier New', monospace;
-    border: 1px solid #3a3f4b;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    height: 100%;
-  }
-
-  .code-header {
-    display: flex;
-    margin-bottom: 15px;
-    font-size: 0.85rem;
-    color: #616161;
-    font-family: sans-serif;
-    border-bottom: 1px solid #333;
-    padding-bottom: 10px;
-  }
-
-  .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-right: 8px;
-  }
-
-  .red { background: #ff5c57; }
-  .yellow { background: #ffbd5f; }
-  .green { background: #5af78e; }
-
-  /* 代码高亮颜色 */
-  .code-keyword { color: #c678dd; }
-  .code-string { color: #98c379; }
-  .code-func { color: #61dafb; }
-  .code-comment { color: #7f848e; }
-  .code-number { color: #da70d6; }
-
-  /* --- 技术栈 --- */
-  .tech-stack {
-    text-align: center;
-  }
-
-  .tech-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 30px;
-  }
-
-  .tech-item {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-weight: 500;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    font-size: 0.95rem;
-    transition: var(--transition);
-  }
-
-  .tech-item:hover {
-    background: var(--secondary-color);
-    transform: scale(1.05);
-  }
-
-  /* --- 页脚 --- */
-  footer {
-    text-align: center;
-    padding: 40px 0;
-    background: #111;
-    color: #fff;
-    font-size: 0.9rem;
-  }
-
-  footer a {
-    color: var(--secondary-color);
-    transition: var(--transition);
-  }
-
-  footer a:hover {
-    color: #fff;
-    text-shadow: 0 0 5px rgba(76, 175, 80, 0.8);
-  }
-
-  /* --- 移动端适配 --- */
-  @media (max-width: 992px) {
-    .code-grid {
-      grid-template-columns: 1fr;
-    }
-    .hero h1 {
-      font-size: 2.3rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .nav-links a {
-      margin-left: 15px;
-      font-size: 0.9rem;
-    }
-    section {
-      padding: 50px 0;
-    }
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 40px;
-    }
-    .feature-card {
-      padding: 25px 20px;
-    }
-    .feature-card h3 {
-      font-size: 1.3rem;
-    }
-  }
-</style>
-<!-- Font Awesome 图标 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        /* --- 移动端适配 --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .feature-row, .feature-row:nth-child(even) {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .feature-img { 
+                width: 100%; 
+                max-height: 300px;
+            }
+            .code-container { 
+                padding: 20px; 
+                font-size: 0.8rem; 
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- 1. 导航栏 -->
-  <header>
-    <div class="container">
-      <div class="logo">
-        <i class="fas fa-leaf"></i> 智慧农业双模态系统
-      </div>
-      <nav class="nav-links">
-        <a href="#intro"><i class="fas fa-info-circle"></i> 项目介绍</a>
-        <a href="#features"><i class="fas fa-bolt"></i> 核心功能</a>
-        <a href="#code"><i class="fas fa-code"></i> 核心代码</a>
-        <a href="#tech"><i class="fas fa-cogs"></i> 技术栈</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- 2. 首屏海报区 -->
-  <section class="hero">
-    <div class="container">
-      <h1>🌾 农业问答 + 🥕 病害识别</h1>
-      <p>基于 Coze 大模型与图像识别技术，打造全方位智慧农业助手</p>
-      <div class="qr-container">
-        <!-- 替换 src 为你的实际小程序码 -->
-        <img src="https://via.placeholder.com/180" alt="小程序二维码" class="qr-code">
-      </div>
-      <p style="color: #fff; font-size: 1rem;">扫码体验 AI 助力农业生产</p>
-    </div>
-  </section>
-
-  <!-- 3. 项目背景 -->
-  <section id="intro">
-    <div class="container">
-      <h2><span>项目背景与愿景</span></h2>
-      <p style="text-align: center; max-width: 800px; margin: 0 auto 40px; color: #555; font-size: 1.1rem;">
-        本项目旨在解决传统农业中“问难”与“诊难”的痛点。通过整合 <strong style="color: #2c7a51;">Coze 工作流</strong> 与 <strong style="color: #2c7a51;">图像识别 API</strong>，
-        我们构建了一个集“智能问答”与“视觉诊断”于一体的双模态系统。
-      </p>
-      
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-brain"></i>
-          </div>
-          <h3>智能问答 (RAG)</h3>
-          <p>基于专属农业知识库，提供精准的种植、养殖建议，告别模糊搜索。</p>
+    <!-- 1. 导航栏 -->
+    <header>
+        <div class="container">
+            <div class="logo">🌾 蜻蜓农服智慧农业</div>
+            <nav class="nav-links">
+                <a href="#intro">项目介绍</a>
+                <a href="#features">核心功能</a>
+                <a href="#code">代码实现</a>
+                <a href="#tech">技术栈</a>
+                <a href="https://github.com/i-haoran/sunhaoran.github.io" target="_blank">GitHub</a>
+            </nav>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-eye"></i>
-          </div>
-          <h3>病害识别 (CV)</h3>
-          <p>上传作物图片，AI 实时识别病害类型，提供防治方案，让科技护航丰收。</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- 4. 核心功能 -->
-  <section id="features" style="background-color: #fff;">
-    <div class="container">
-      <h2><span>核心功能展示</span></h2>
-      <div class="features-grid">
-        <div class="feature-card" style="text-align: left;">
-          <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-            <span style="background: var(--secondary-color); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">1</span>
-            Coze 智能问答
-          </h3>
-          <p><strong>技术点：</strong>Coze API, RAG (检索增强生成)</p>
-          <p><strong>亮点：</strong>毫秒级响应，支持多轮对话，基于本地知识库的精准回答。</p>
+    <!-- 2. 首屏海报区 -->
+    <section class="hero">
+        <div class="container">
+            <h1>基于 Coze 与小程序的<br>农业智能问答 + 病虫害识别系统</h1>
+            <p>融合大模型问答与AI图像识别，为农户提供一站式智能农业服务</p>
+            <img src="xiaochengxuma.jpg" alt="小程序二维码" class="qr-code" style="object-fit: contain;">
+            <p style="font-size: 0.9rem; margin-top: 10px;">微信扫码体验</p>
         </div>
-        <div class="feature-card" style="text-align: left;">
-          <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-            <span style="background: var(--primary-color); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">2</span>
-            图像病害识别
-          </h3>
-          <p><strong>技术点：</strong>Canvas, Base64, 图像识别 API</p>
-          <p><strong>亮点：</strong>前端预处理图片，后端精准识别，全流程自动化。</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 5. 代码展示 (双核心) -->
-  <section id="code" class="code-section">
-    <div class="container">
-      <h2><span>双核心代码架构</span></h2>
-      
-      <div class="code-grid">
-        
-        <!-- 左侧：Coze 问答核心 -->
-        <div class="code-container">
-          <div class="code-header">
-            <div class="dot red"></div>
-            <div class="dot yellow"></div>
-            <div class="dot green"></div>
-            <span style="margin-left: 10px; color: #fff;"><i class="fas fa-comments"></i> Module 1: Coze 问答核心</span>
-          </div>
-          <pre style="color: #e0e0e0; margin-top: 10px;"><code>
-<span class="code-comment">// 1. 数据定义</span>
-<span class="code-func">data</span>: {
-  messages: [],
-  inputValue: <span class="code-string">''</span>,
-  loading: <span class="code-keyword">false</span>
+    <!-- 3. 项目背景/介绍 -->
+    <section id="intro">
+        <div class="container">
+            <h2>项目背景</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto; color: #555;">
+                在传统农业生产中，农户面临病虫害识别难、防治不及时、技术咨询渠道少等难题。
+                本项目整合<strong>百度EasyDL图像识别</strong>与<strong>Coze扣子大模型</strong>，
+                打造集<strong>病虫害拍照识别</strong>、<strong>智能问答</strong>、<strong>防治方案</strong>于一体的小程序，
+                真正实现AI赋能农业生产。
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. 核心功能展示 -->
+    <section id="features" style="background-color: #e8f5e9;">
+        <div class="container">
+            <h2>核心功能</h2>
+
+            <!-- 功能 1：病虫害识别（新增） -->
+            <div class="feature-row">
+                <div class="feature-text">
+                    <h3>📸 百度EasyDL病虫害识别</h3>
+                    <p>基于百度EasyDL训练专属农作物病虫害识别模型，支持拍照/相册上传识别</p>
+                    <p>实时返回病虫害名称、置信度、识别耗时，准确率高达88%以上，一键识别快速诊断</p>
+                </div>
+                <div class="feature-img">
+                    <img src="plant.png" alt="病虫害识别">
+                </div>
+            </div>
+
+            <!-- 功能 2 -->
+            <div class="feature-row">
+                <div class="feature-text">
+                    <h3>📚 专属农业知识库</h3>
+                    <p>与蜻蜓农服企业合作，在Coze中整理专业防治建议</p>
+                    <p>AI基于本地知识库精准回答，确保建议科学、实用、可落地</p>
+                </div>
+                <div class="feature-img">
+                    <img src="zhishiku.png" alt="知识库展示">
+                </div>
+            </div>
+
+            <!-- 功能 3 -->
+            <div class="feature-row">
+                <div class="feature-text">
+                    <h3>💬 智能问答体验</h3>
+                    <p>输入问题即可获取专业解答，支持多轮对话追问</p>
+                    <p>识别后可直接咨询防治方法，形成“识别+咨询+方案”完整服务闭环</p>
+                </div>
+                <div class="feature-img">
+                    <img src="xiaochengxuwenda.png" alt="问答界面">
+                </div>
+            </div>
+
+            <!-- 功能 4 -->
+            <div class="feature-row">
+                <div class="feature-text">
+                    <h3>🚀 快速部署与AI能力</h3>
+                    <p>集成百度AI开放平台 + Coze API双接口能力</p>
+                    <p>图像识别+大模型问答双引擎，毫秒级响应，无需复杂服务器维护</p>
+                </div>
+                <div class="feature-img">
+                    <img src="kouziwenda.png" alt="技术架构">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 代码展示 -->
+    <section id="code" class="code-section">
+        <div class="container">
+            <h2>核心代码实现</h2>
+
+            <!-- 病虫害识别核心代码 -->
+            <div class="code-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span style="margin-left: 10px;">识别页面 - 百度EasyDL病虫害识别</span>
+            </div>
+            <div class="code-container">
+<pre><code><span class="code-comment">// 病虫害识别 - 百度EasyDL核心逻辑</span>
+<span class="code-func">plant()</span>{
+  <span class="code-keyword">if</span>(!<span class="code-keyword">this</span>.data.base64Img){
+    <span class="code-keyword">this</span>.<span class="code-func">setData</span>({ isShow: <span class="code-keyword">true</span> })
+    <span class="code-keyword">return</span>
+  }
+  <span class="code-keyword">const</span> startTime = <span class="code-func">Date</span>.now()
+  <span class="code-keyword">this</span>.<span class="code-func">setData</span>({ hasRequested: <span class="code-keyword">true</span> })
+  <span class="code-keyword">this</span>.<span class="code-func">getToken</span>() <span class="code-comment">// 获取百度AI Token</span>
 },
 
-<span class="code-comment">// 2. 发起对话请求</span>
-<span class="code-func">fetchAnswer</span>(query) {
-  <span class="code-keyword">const</span> that = <span class="code-keyword">this</span>;
+<span class="code-func">getToken()</span>{
+  wx.<span class="code-func">request</span>({
+    url: <span class="code-string">'https://aip.baidubce.com/oauth/2.0/token'</span>,
+    success: (res) => {
+      <span class="code-keyword">this</span>.<span class="code-func">getResult</span>(res.data.access_token)
+    }
+  })
+},
+
+<span class="code-func">getResult(token)</span>{
+  wx.<span class="code-func">request</span>({
+    url: <span class="code-string">'https://aip.baidubce.com/rpc/2.0/ai_custom/v1/classification/ricedisease111?access_token='</span> + token,
+    method: <span class="code-string">'POST'</span>,
+    data: { image: <span class="code-keyword">this</span>.data.base64Img },
+    success: (res) => {
+      <span class="code-keyword">this</span>.<span class="code-func">processResults</span>(res.data.results)
+    }
+  })
+},
+
+<span class="code-func">processResults(results)</span>{
+  <span class="code-keyword">const</span> valid = results.<span class="code-func">filter</span>(item => item.score >= 0.88)
+  <span class="code-keyword">this</span>.<span class="code-func">setData</span>({
+    results: valid.<span class="code-func">map</span>(item => ({
+      label: item.name,
+      confidence: (item.score*100).toFixed(2)+<span class="code-string">'%'</span>
+    }))
+  })
+}</code></pre>
+            </div>
+
+            <!-- Coze问答代码 -->
+            <div class="code-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></span>
+                <span style="margin-left: 10px;">问答页面 - Coze API调用</span>
+            </div>
+            <div class="code-container">
+<pre><code><span class="code-func">fetchAnswer(query)</span>{
   wx.<span class="code-func">request</span>({
     url: <span class="code-string">'https://api.coze.cn/open_api/v2/chat'</span>,
     method: <span class="code-string">'POST'</span>,
     header: {
-      <span class="code-string">'Authorization'</span>: <span class="code-string">'Bearer pat_xxxxx'</span>,
+      <span class="code-string">'Authorization'</span>: <span class="code-string">'Bearer pat_s1mLGPc1aMDcbaOfu4fdY4nrm7N5V8xdwwMthlJoVDr49yyy3wTVTJ9WaLl9y6Cm'</span>,
       <span class="code-string">'Content-Type'</span>: <span class="code-string">'application/json'</span>
     },
     data: {
       bot_id: <span class="code-string">'7536723393757085735'</span>,
-      user: <span class="code-string">'user_'</span> + Date.now(),
+      user: <span class="code-string">'user_'</span> + <span class="code-func">Date</span>.now(),
       query: query,
       stream: <span class="code-keyword">false</span>
     },
-    success: <span class="code-func">function</span>(res) {
-      <span class="code-comment">// 3. 智能解析响应</span>
-      <span class="code-keyword">const</span> answer = that.<span class="code-func">simpleExtract</span>(res.data);
-      that.<span class="code-func">addMessage</span>(answer, <span class="code-keyword">false</span>);
-    },
-    fail: <span class="code-func">function</span>() {
-      that.<span class="code-func">addMessage</span>(<span class="code-string">'请求失败'</span>, <span class="code-keyword">false</span>);
+    success: (res) => {
+      <span class="code-keyword">this</span>.<span class="code-func">handleResponse</span>(res.data)
     }
-  });
-},
-
-<span class="code-comment">// 4. 容错解析函数</span>
-<span class="code-func">simpleExtract</span>(responseData) {
-  <span class="code-keyword">try</span> {
-    <span class="code-keyword">if</span> (responseData.data?.messages?.[0]) {
-      <span class="code-keyword">return</span> responseData.data.messages[0].content;
-    }
-    <span class="code-keyword">return</span> <span class="code-string">"未获取到有效回答"</span>;
-  } <span class="code-keyword">catch</span> (e) {
-    <span class="code-keyword">return</span> <span class="code-string">"解析错误"</span>;
-  }
-}
-          </code></pre>
+  })
+}</code></pre>
+            </div>
         </div>
+    </section>
 
-        <!-- 右侧：病害识别核心 -->
-        <div class="code-container">
-          <div class="code-header">
-            <div class="dot red"></div>
-            <div class="dot yellow"></div>
-            <div class="dot green"></div>
-            <span style="margin-left: 10px; color: #fff;"><i class="fas fa-seedling"></i> Module 2: 病害识别核心</span>
-          </div>
-          <pre style="color: #e0e0e0; margin-top: 10px;"><code>
-<span class="code-comment">// 1. 选择图片并预处理</span>
-<span class="code-func">chooseImage</span>() {
-  wx.<span class="code-func">chooseMedia</span>({
-    count: 1,
-    mediaType: [<span class="code-string">'image'</span>],
-    success: (res) =&gt; {
-      <span class="code-keyword">const</span> tempFilePath = res.tempFiles[0].tempFilePath;
-      <span class="code-comment">// 显示加载中</span>
-      wx.<span class="code-func">showLoading</span>({ title: <span class="code-string">'识别中...'</span> });
-      <span class="code-comment">// 调用图片转Base64</span>
-      <span class="code-keyword">this</span>.<span class="code-func">imageToBase64</span>(tempFilePath);
-    }
-  });
-},
-
-<span class="code-comment">// 2. Canvas 图片转 Base64 (关键预处理)</span>
-<span class="code-func">imageToBase64</span>(imgPath) {
-  <span class="code-keyword">const</span> that = <span class="code-keyword">this</span>;
-  <span class="code-keyword">const</span> ctx = wx.<span class="code-func">createCanvasContext</span>(<span class="code-string">'hiddenCanvas'</span>);
-  
-  ctx.<span class="code-func">drawImage</span>(imgPath, 0, 0, 224, 224); <span class="code-comment">// 统一尺寸</span>
-  ctx.<span class="code-func">draw</span>(<span class="code-keyword">false</span>, () =&gt; {
-    wx.<span class="code-func">canvasToTempFilePath</span>({
-      x: 0, y: 0, width: 224, height: 224,
-      destWidth: 224, destHeight: 224,
-      canvasId: <span class="code-string">'hiddenCanvas'</span>,
-      success: (res) =&gt; {
-        <span class="code-comment">// 转换为 Base64 上传</span>
-        wx.<span class="code-func">getFileSystemManager</span>().<span class="code-func">readFile</span>({
-          filePath: res.tempFilePath,
-          encoding: <span class="code-string">'base64'</span>,
-          success: (data) =&gt; {
-            that.<span class="code-func">uploadToServer</span>(data.data); <span class="code-comment">// 调用上传</span>
-          }
-        });
-      }
-    });
-  });
-},
-
-<span class="code-comment">// 3. 上传至 AI 识别服务</span>
-<span class="code-func">uploadToServer</span>(base64Image) {
-  wx.<span class="code-func">request</span>({
-    url: <span class="code-string">'https://your-ai-api.com/detect'</span>, <span class="code-comment">// 替换为你的识别API</span>
-    method: <span class="code-string">'POST'</span>,
-    data: {
-      image: base64Image,
-      type: <span class="code-string">'plant_disease'</span>
-    },
-    header: {
-      <span class="code-string">'content-type'</span>: <span class="code-string">'application/json'</span>
-    },
-    success: (res) =&gt; {
-      wx.<span class="code-func">hideLoading</span>();
-      <span class="code-comment">// 处理识别结果</span>
-      <span class="code-keyword">if</span> (res.data.code === 200) {
-        wx.<span class="code-func">navigateTo</span>({
-          url: <span class="code-string">`/pages/result/result?data=<span class="code-subst">${JSON.stringify(res.data)}</span>`</span>
-        });
-      } else {
-        wx.<span class="code-func">showModal</span>({ title: <span class="code-string">'错误'</span>, content: <span class="code-string">'未识别出病害'</span> });
-      }
-    },
-    fail: () =&gt; {
-      wx.<span class="code-func">hideLoading</span>();
-      wx.<span class="code-func">showModal</span>({ title: <span class="code-string">'网络异常'</span> });
-    }
-  });
-}
-          </code></pre>
+    <!-- 6. 技术栈 -->
+    <section id="tech">
+        <div class="container">
+            <h2>技术栈</h2>
+            <div class="tech-grid">
+                <div class="tech-item">百度EasyDL</div>
+                <div class="tech-item">百度AI开放平台</div>
+                <div class="tech-item">Coze (扣子)</div>
+                <div class="tech-item">微信小程序</div>
+                <div class="tech-item">RAG知识库</div>
+                <div class="tech-item">GitHub Pages</div>
+            </div>
         </div>
+    </section>
 
-      </div> <!-- End Code Grid -->
-
-      <p style="text-align: center; color: #888; margin-top: 30px; font-size: 0.9rem;">
-        <i class="fas fa-code"></i> 左侧为 Coze 对话流，右侧为 Canvas 图像流，双引擎驱动智慧农业
-      </p>
-
-    </div>
-  </section>
-
-  <!-- 6. 技术栈 -->
-  <section id="tech">
-    <div class="container">
-      <h2><span>技术栈</span></h2>
-      <p style="text-align: center; max-width: 700px; margin: 0 auto 30px; color: #666;">
-        本项目深度融合了大模型应用开发与计算机视觉技术，构建了完整的农业 AI 解决方案。
-      </p>
-      <div class="tech-grid">
-        <div class="tech-item"><i class="fab fa-weixin"></i> 微信小程序</div>
-        <div class="tech-item"><i class="fas fa-robot"></i> Coze (扣子)</div>
-        <div class="tech-item"><i class="fas fa-database"></i> RAG 检索增强</div>
-        <div class="tech-item"><i class="fas fa-image"></i> OpenCV / CNN</div>
-        <div class="tech-item"><i class="fas fa-code"></i> JavaScript</div>
-        <div class="tech-item"><i class="fas fa-leaf"></i> 农业知识图谱</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. 页脚 -->
-  <footer>
-    <div class="container">
-      <h3 style="font-size: 1.5rem; margin-bottom: 10px;">🌾 智慧农业，未来已来</h3>
-      <p>本项目展示了 AI 技术在传统农业领域的创新应用，致力于提高农业生产效率。</p>
-      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #333; font-size: 0.9rem; color: #aaa;">
-        <p>&copy; 2026 智慧农业项目组. 保留所有权利.</p>
-        <p style="margin-top: 10px;">
-          <a href="#" style="color: #61dafb; margin: 0 10px;">GitHub 仓库</a>
-          <a href="#" style="color: #61dafb; margin: 0 10px;">项目文档</a>
-          <a href="#" style="color: #61dafb; margin: 0 10px;">联系我们</a>
-        </p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- 隐藏的 Canvas (用于图片处理) -->
-  <canvas canvas-id="hiddenCanvas" style="position: absolute; top: -9999px;" />
-
+    <!-- 7. 页脚 -->
+    <footer>
+        <div class="container">
+            <p>© 2026 孙浩然. 保留所有权利.</p>
+            <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;"> 
+                由 孙浩然 设计并开发 | AI智慧农业解决方案
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
