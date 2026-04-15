@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 农业问答助手 - 项目展示</title>
+    <title>农业惠农助手 - 项目展示</title>
     <style>
         /* --- 基础样式重置 --- */
         * { 
@@ -292,27 +292,13 @@
     <!-- 2. 首屏海报区 -->
     <section class="hero">
         <div class="container">
-            <h1>基于 Coze 与小程序的<br>农业智能问答系统</h1>
+            <h1>基于 百度Easy DL 、Coze 与小程序的<br>农业识别智能问答系统</h1>
             <p>利用大模型技术，为农户提供专业、实时的农业种植与养殖建议，让知识触手可及</p>
             
             <!-- 图片占位符：请替换 src 为你的小程序码图片链接 -->
             <img src="xiaochengxuma.jpg" alt="小程序二维码" class="qr-code" style="object-fit: contain;">
             <p style="font-size: 0.9rem; margin-top: 10px;">微信扫码体验</p>
 
-            <!-- 新增：病虫害识别 图片+文字 -->
-            <div class="pest-show-wrap">
-                <div class="pest-item">
-                    <img src="plant.png" alt="病虫害识别">
-                    <p>病虫害识别功能</p>
-                </div>
-                <div class="pest-item">
-                    <img src="zhishiku.png" alt="模型训练">
-                    <p>EasyDL模型训练</p>
-                </div>
-            </div>
-            <p style="font-size:0.9rem;color:#666;margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto;">
-                系统集成百度EasyDL训练的病虫害识别模型，支持拍照快速诊断，为农户提供实时病害识别服务
-            </p>
         </div>
     </section>
 
@@ -321,9 +307,9 @@
         <div class="container">
             <h2>项目背景</h2>
             <p style="text-align: center; max-width: 700px; margin: 0 auto; color: #555;">
-                在传统的农业生产中，农户往往面临病虫害识别难、种植技术咨询渠道少的问题。
-                本项目通过整合 <strong>Coze (扣子)</strong> 强大的工作流编排能力与专属农业知识库，
-                构建了一个轻量级的小程序问答助手，旨在降低农业技术获取的门槛。
+                在传统的农业生产中，农户往往面临病虫害识别难、种植技术咨询渠道少的问题
+                本项目通过整合 <strong>百度Easy DL和Coze (扣子)</strong> 强大的工作流编排能力与专属农业知识库，
+                构建了一个轻量级的小程序问答助手，旨在降低农业技术获取的门槛
             </p>
         </div>
     </section>
@@ -431,8 +417,8 @@
     url: <span class="code-string">'https://aip.baidubce.com/oauth/2.0/token'</span>,
     data: {
       grant_type: <span class="code-string">'client_credentials'</span>,
-      client_id: <span class="code-string">'L5gAyKYWlesQtF4zWLlQyvrY'</span>,
-      client_secret: <span class="code-string">'RoVOCfqhjTuD1sWmJytn0P7HA4LVVAzR'</span>
+      client_id: <span class="code-string">'请使用自己的API'</span>,
+      client_secret: <span class="code-string">'请使用自己的API'</span>
     },
     success: (res) => {
       <span class="code-keyword">this</span>.<span class="code-func">getResult</span>(res.data.access_token)
@@ -443,7 +429,7 @@
 <span class="code-comment">// 调用EasyDL病虫害识别接口</span>
 <span class="code-func">getResult(token)</span>{
   wx.<span class="code-func">request</span>({
-    url: <span class="code-string">'https://aip.baidubce.com/rpc/2.0/ai_custom/v1/classification/ricedisease111?access_token='</span>+token,
+    url: <span class="code-string">'请使用自己的API?access_token='</span>+token,
     method: <span class="code-string">'POST'</span>,
     data: { image: <span class="code-keyword">this</span>.data.base64Img },
     success: (res) => {
@@ -505,11 +491,11 @@
         url: <span class="code-string">'https://api.coze.cn/open_api/v2/chat'</span>, 
         method: <span class="code-string">'POST'</span>, 
         header: { 
-            <span class="code-string">'Authorization'</span>: <span class="code-string">'Bearer pat_s1mLGPc1aMDcbaOfu4fdY4nrm7N5V8xdwwMthlJoVDr49yyy3wTVTJ9WaLl9y6Cm'</span>, 
+            <span class="code-string">'Authorization'</span>: <span class="code-string">'请使用自己的API'</span>, 
             <span class="code-string">'Content-Type'</span>: <span class="code-string">'application/json'</span> 
         }, 
         data: { 
-            bot_id: <span class="code-string">'7536723393757085735'</span>, <span class="code-comment">// 关键: 对应 Coze Bot ID</span>
+            bot_id: <span class="code-string">'请使用自己的Bot ID'</span>, <span class="code-comment">// 关键: 对应 Coze Bot ID</span>
             user: <span class="code-string">'user_'</span> + Date.now(), 
             query: query, 
             stream: <span class="code-keyword">false</span> 
@@ -571,7 +557,6 @@
                 <div class="tech-item">微信小程序</div>
                 <div class="tech-item">百度EasyDL</div>
                 <div class="tech-item">RAG (检索增强生成)</div>
-                <div class="tech-item">GitHub Pages</div>
             </div>
         </div>
     </section>
